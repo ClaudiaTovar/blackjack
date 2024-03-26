@@ -4,24 +4,28 @@
 
     /*este codigo crea una baraja aleatorea con _.shuffle() */
     let deck = [];
-    const tipos = ["C", "D", "H", "S"];
-    const especiales = ["A", "J", "Q", "K"]
-    let puntosJugador = 0;
-    let puntosComputadora = 0;
+    const tipos = ["C", "D", "H", "S"],
+         especiales = ["A", "J", "Q", "K"]
+    let puntosJugador = 0,
+        puntosComputadora = 0;
 
 
     //referencias al html
 
+    const btnPedir = document.querySelector(`#btnPedir`),
+            btnNuevo = document.querySelector("#btnNuevo"),
+            btnDetener = document.querySelector("#btnDetener");
+
+    const divJugadorCartas = document.querySelector("#jugador-cartas"),
+             divCartasComputadora = document.querySelector("#computadora-cartas");
+    
     const puntosHtml = document.querySelectorAll("small");
-    const btnPedir = document.querySelector(`#btnPedir`);
-    const btnDetener = document.querySelector("#btnDetener")
-    const divJugadorCartas = document.querySelector("#jugador-cartas")
-    const divCartasComputadora = document.querySelector("#computadora-cartas")
-    const btnNuevo = document.querySelector("#btnNuevo");
 
     //funcion para crear la baraja 
 
     const crearDeck = () => {
+
+        deck = [];
         for ( let i = 2; i <= 10; i++) {
             for( let tipo of tipos){
                 deck.push(i + tipo);
@@ -34,9 +38,7 @@
             }
         }
         
-        deck = _.shuffle(deck); /*revolver la baraja con shuffle*/
-        //console.log(deck);
-        return deck;
+        return _.shuffle(deck); /*revolver la baraja con shuffle*/
     }
 
 
@@ -48,14 +50,8 @@
         if(deck.length === 0){
             throw "No hay cartas en el deck";
         }
-        
-    const carta = deck.pop();
-        //console.log(deck);
-        console.log(carta);
-        return carta; 
+        return deck.pop(); 
     }
-
-
 
     /*funcion para extraer el valor de la carta elegida */ 
 
@@ -82,6 +78,8 @@
 
     /*isNaN() es un metodo que me dice si es o no un numero, devuelve true si no es un 
     numero, devuelve false si es un numero */
+
+    
 
 
     //turno de la computadora se da cuando yo supero los 21 y cuando hago click
